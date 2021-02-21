@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+
+    <title>Log Reader</title>
+</head>
+
+<body>
+  <div id="logreaderDiv">
+
+  </div>
+</body>
+
+<script>
+
+
+	function readLogLevels () {
+      var request = new XMLHttpRequest();
+      request.open('GET', 'http://localhost:8080/log/count/log-random.log', false );
+      request.send();
+      return request.responseText;
+	}
+
+	function parseResponse() {
+	  var data = JSON.parse(readLogLevels())
+      console.log(data);
+      var mainContainer = document.getElementById("logreaderDiv");
+
+      var div1 = document.createElement("logreaderDivInfo");
+      div1.innerHTML = 'Info Count ' + data.infoCount + '</br></br>';
+      mainContainer.appendChild(div1);
+
+      var div2 = document.createElement("logreaderDivError");
+      div2.innerHTML = 'Error Count ' + data.errCount + '</br></br>';
+      mainContainer.appendChild(div2);
+
+      var div3 = document.createElement("logreaderDivWarn");
+      div3.innerHTML = 'Warning Count ' + data.warnCount + '</br></br>';
+      mainContainer.appendChild(div3);
+	}
+    //while (true){
+      setTimeout(function(){ parseResponse ();}, 5000);
+    //}
+
+
+</script>
+
+</html>
