@@ -24,7 +24,7 @@ public class LogFileGenerator {
 
         try {
             PrintWriter logFileWriter = new PrintWriter (logFile);
-            for(int i = 0; i <500; i++) {
+            for(int i = 0; i <10; i++) {
 //                Thread.sleep(1000);
                 logFileWriter.println(LocalDate.now() + " " + LocalTime.now() + " " + logLevelStrList.get(ThreadLocalRandom.current().nextInt(0, 3)));
             }

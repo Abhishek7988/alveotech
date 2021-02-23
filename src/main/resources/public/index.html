@@ -26,6 +26,7 @@
 	  var data = JSON.parse(readLogLevels())
       console.log(data);
       var mainContainer = document.getElementById("logreaderDiv");
+      mainContainer.innerHTML = '';
 
       var div1 = document.createElement("logreaderDivInfo");
       div1.innerHTML = 'Info Count ' + data.infoCount + '</br></br>';
@@ -38,6 +39,8 @@
       var div3 = document.createElement("logreaderDivWarn");
       div3.innerHTML = 'Warning Count ' + data.warnCount + '</br></br>';
       mainContainer.appendChild(div3);
+
+      setTimeout(function(){ parseResponse ();}, 5000);
 	}
     //while (true){
       setTimeout(function(){ parseResponse ();}, 5000);
