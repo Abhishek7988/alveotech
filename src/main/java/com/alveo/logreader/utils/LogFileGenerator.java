@@ -24,16 +24,14 @@ public class LogFileGenerator {
 
         try {
             PrintWriter logFileWriter = new PrintWriter (logFile);
-            for(int i = 0; i <10; i++) {
+            for(int i = 0; i <1000; i++) {
 //                Thread.sleep(1000);
                 logFileWriter.println(LocalDate.now() + " " + LocalTime.now() + " " + logLevelStrList.get(ThreadLocalRandom.current().nextInt(0, 3)));
             }
             logFileWriter.close();
         } catch (IOException e) {
-            e.printStackTrace();
-        } /*catch (InterruptedException e) {
-            e.printStackTrace();
-        }*/
+
+        }
     }
 
 }

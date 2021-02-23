@@ -1,2 +1,6 @@
+#filepath from which the log file needs to be read
 file:
     path: D://workpaces//logs//log-reader//
+#log monitoring interval in seconds
+monitoring:
+    interval: 60

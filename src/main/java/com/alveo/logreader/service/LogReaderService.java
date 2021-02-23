@@ -1,5 +1,6 @@
 package com.alveo.logreader.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.input.ReversedLinesFileReader;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+/**
+ * Service class for the log file read.
+ */
+@Slf4j
 @Service
 public class LogReaderService {
 
@@ -21,7 +26,7 @@ public class LogReaderService {
 
     public Map<String, Integer> countLogLevelLogs(final String fileName, final Integer timeInSeconds) {
         final Map<String, Integer> logLevelCount = new HashMap<>();
-
+        log.info("Entering countLogLevelLogs()");
         Integer infoCount = 0;
         Integer warnCount = 0;
         Integer errCount = 0;
@@ -53,21 +58,23 @@ public class LogReaderService {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("IOException in countLogLevelLogs() ", e);
         }
         try {
             fr.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("IOException in countLogLevelLogs() ", e);
         }
 
-        System.out.println("infoCount " + infoCount);
-        System.out.println("warnCount " +warnCount);
-        System.out.println("errCount " +errCount);
+        log.debug("infoCount {}", infoCount);
+        log.debug("warnCount {}", warnCount);
+        log.debug("errCount ", errCount);
+
         logLevelCount.put("infoCount", infoCount);
         logLevelCount.put("warnCount", warnCount);
         logLevelCount.put("errCount", errCount);
 
+        log.info("Exiting countLogLevelLogs()");
         return logLevelCount;
     }
 
